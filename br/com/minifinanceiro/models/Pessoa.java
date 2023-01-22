@@ -3,11 +3,11 @@ package br.com.minifinanceiro.models;
 import java.util.Calendar;
 import java.util.Date;
 
-abstract class Pessoa {
+public abstract class Pessoa {
 
     private static int numId;
 
-    private int id;
+    private final int id;
     private String nome;
     private String cidadeDomicilio;
     private Date dataCadastro;

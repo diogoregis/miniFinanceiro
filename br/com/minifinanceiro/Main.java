@@ -1,19 +1,19 @@
 package br.com.minifinanceiro;
 
-import br.com.minifinanceiro.models.PessoaFisica;
+import br.com.minifinanceiro.tools.Sistema;
+import br.com.minifinanceiro.tools.Tools;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        PessoaFisica pessoaFisica = new PessoaFisica("Fulano de Tal","Recife, BRA", "da Silva", "04352096314", 'M');
-        PessoaFisica pessoaFisica2 = new PessoaFisica("Fulano de Tal","Recife, BRA", "da Silva", "04352096314", 'M');
-        PessoaFisica pessoaFisica3 = new PessoaFisica("Fulano de Tal","Recife, BRA", "da Silva", "04352096314", 'M');
+        Sistema.getInstance().digaOla();
+        Tools.pause(3);
+        Sistema.getInstance().aloMenu();
 
+        Tools.pause(5);
 
-        System.out.println(pessoaFisica);
-        System.out.println(pessoaFisica2);
-        System.out.println(pessoaFisica3);
+        // trocar DATE por String e adcionar metodo para converter quando quiser fazer calculos.
 
     }
 

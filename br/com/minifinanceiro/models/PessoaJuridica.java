@@ -4,13 +4,12 @@ public class PessoaJuridica extends Pessoa{
 
     private String nomeFantasia;
     private String cnpj;
-    private char tipoRegimeTributario;
+    private boolean empresaMatriz;
 
-    public PessoaJuridica(String nome, String cidadeDomicilio, String nomeFantasia, String cnpj, char tipoRegimeTributario) {
+    public PessoaJuridica(String nome, String cidadeDomicilio, String nomeFantasia, String cnpj) {
         super(nome, cidadeDomicilio);
         this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;
-        this.tipoRegimeTributario = tipoRegimeTributario;
     }
 
     public String getNomeFantasia() {
@@ -29,11 +28,11 @@ public class PessoaJuridica extends Pessoa{
         this.cnpj = cnpj;
     }
 
-    public char getTipoRegimeTributario() {
-        return tipoRegimeTributario;
+    public boolean getEmpresaMatriz() {
+        return empresaMatriz;
     }
 
-    public void setTipoRegimeTributario(char tipoRegimeTributario) {
-        this.tipoRegimeTributario = tipoRegimeTributario;
+    protected void setEmpresaMatriz(boolean empresaMatriz) {
+        this.empresaMatriz = empresaMatriz;
     }
 }
