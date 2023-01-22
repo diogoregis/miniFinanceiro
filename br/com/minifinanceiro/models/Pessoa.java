@@ -1,16 +1,11 @@
 package br.com.minifinanceiro.models;
 
-import java.util.Calendar;
-import java.util.Date;
-
 public abstract class Pessoa {
 
     private static int numId;
-
     private final int id;
     private String nome;
     private String cidadeDomicilio;
-    private Date dataCadastro;
     private boolean cadastroAtivo = true;
 
     private static int proximoNum(){
@@ -21,7 +16,6 @@ public abstract class Pessoa {
         this.id = proximoNum();
         this.nome = nome;
         this.cidadeDomicilio = cidadeDomicilio;
-        this.dataCadastro = Calendar.getInstance().getTime();
     }
 
     public int getId() {
@@ -44,20 +38,12 @@ public abstract class Pessoa {
         this.cidadeDomicilio = cidadeDomicilio;
     }
 
-    protected Date getDataCadastro(){
-        return dataCadastro;
-    }
-
     public boolean isCadastroAtivo() {
         return cadastroAtivo;
     }
 
     public void setCadastroAtivo(boolean cadastroAtivo) {
         this.cadastroAtivo = cadastroAtivo;
-    }
-
-    protected void dataDeCadastro (){
-
     }
 
     @Override

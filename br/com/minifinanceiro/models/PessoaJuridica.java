@@ -6,7 +6,7 @@ public class PessoaJuridica extends Pessoa{
     private String cnpj;
     private boolean empresaMatriz;
 
-    public PessoaJuridica(String nome, String cidadeDomicilio, String nomeFantasia, String cnpj) {
+    public PessoaJuridica(String nome, String nomeFantasia, String cidadeDomicilio,  String cnpj) {
         super(nome, cidadeDomicilio);
         this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;

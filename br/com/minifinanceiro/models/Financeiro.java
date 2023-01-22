@@ -11,16 +11,16 @@ public class Financeiro {
     private PessoaJuridica empresa;
     private Pessoa fornecedor;
     private double valorTotal;
+    private boolean liquidado;
+    private EmpresaProprio empresaProprio;
 
-    public Financeiro(String descricaoDespesa, PessoaJuridica empresa, Pessoa fornecedor, double valorTotal, double valorPago, Date vencimento, Date dataPagamento) {
+    public Financeiro(String descricaoDespesa, PessoaJuridica empresa, Pessoa fornecedor, double valorTotal) {
         this.id = proximoNum();
         this.descricaoDespesa = descricaoDespesa;
         this.empresa = empresa;
         this.fornecedor = fornecedor;
         this.valorTotal = valorTotal;
-        this.valorPago = valorPago;
-        this.vencimento = vencimento;
-        this.dataPagamento = dataPagamento;
+
     }
 
     private static int proximoNum(){
@@ -54,37 +54,6 @@ public class Financeiro {
         this.valorTotal = valorTotal;
     }
 
-    public double getValorPago() {
-        return valorPago;
-    }
-
-    public void setValorPago(double valorPago) {
-        this.valorPago = valorPago;
-    }
-
-    public double getValorRestaPagar() {
-        return valorRestaPagar;
-    }
-
-    public void setValorRestaPagar(double valorRestaPagar) {
-        this.valorRestaPagar = valorRestaPagar;
-    }
-
-    public Date getVencimento() {
-        return vencimento;
-    }
-
-    public void setVencimento(Date vencimento) {
-        this.vencimento = vencimento;
-    }
-
-    public Date getDataPagamento() {
-        return dataPagamento;
-    }
-
-    public void setDataPagamento(Date dataPagamento) {
-        this.dataPagamento = dataPagamento;
-    }
 
     public boolean isLiquidado() {
         return liquidado;
@@ -94,21 +63,17 @@ public class Financeiro {
         this.liquidado = liquidado;
     }
 
-    public boolean isVencido() {
-        return vencido;
+
+    @Override
+    public String toString() {
+        return "Financeiro{" +
+                "id=" + id +
+                ", descricaoDespesa='" + descricaoDespesa + '\'' +
+                ", empresa=" + empresa +
+                ", fornecedor=" + fornecedor +
+                ", valorTotal=" + valorTotal +
+                ", liquidado=" + liquidado +
+                ", empresaProprio=" + empresaProprio +
+                '}';
     }
-
-    public void setVencido(boolean vencido) {
-        this.vencido = vencido;
-    }
-
-    private double valorPago;
-    private double valorRestaPagar;
-    private Date vencimento;
-    private Date dataPagamento;
-    private boolean liquidado;
-    private boolean vencido;
-    private EmpresaProprio empresaProprio;
-
-
 }
