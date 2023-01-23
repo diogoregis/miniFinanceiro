@@ -4,6 +4,8 @@ import br.com.minifinanceiro.controllers.FinanceiroController;
 import br.com.minifinanceiro.controllers.PessoaFisicaController;
 import br.com.minifinanceiro.controllers.PessoaJuridicaController;
 import br.com.minifinanceiro.models.Pessoa;
+import br.com.minifinanceiro.models.PessoaFisica;
+import br.com.minifinanceiro.models.PessoaJuridica;
 
 import java.util.Scanner;
 
@@ -76,6 +78,145 @@ public class Sistema {
     }
 
     private void rodarMenuOpcoesFornecedores() {
+        menu.menuFornecedores01();
+        receberOpcao();
+        opcoesMenuFornecedores();
+    }
+
+    private void opcoesMenuFornecedores() {
+        switch (opcao){
+            case 1:
+                incluirNovoFornecedor();
+                rodarMenuOpcoesFornecedores();
+                break;
+            case 2:
+                opcoesMenuFornecedoresExluir();
+                rodarMenuOpcoesFornecedores();
+                break;
+            case 3:
+                listarFornecedoresAll();
+                rodarMenuOpcoesFornecedores();
+                break;
+            case 4:
+                rodarMenuOpcoesTela02();
+                break;
+            default:
+                System.out.println("Informe uma opção valida");
+                System.out.println(" ");
+                opcoesMenuDespesas();
+                break;
+        }
+    }
+
+    private void incluirNovoFornecedor() {
+        rodarMenuTipoFornecedor();
+        receberOpcao();
+        switch(opcao){
+            case 1:
+                cadastroFornecedorPessoaFisica();
+                rodarMenuOpcoesFornecedores();
+                break;
+            case 2:
+                cadastroFornecedorPessoaJuridica();
+                rodarMenuOpcoesFornecedores();
+                break;
+            default:
+                opcaoInvalida();
+                rodarMenuOpcoesFornecedores();
+                break;
+        }
+    }
+
+    private void cadastroFornecedorPessoaJuridica() {
+
+        String nome, sobrenome, domicilio, registro;
+        PessoaJuridica pessoaJuridica;
+        menu.menuIncluirDespesa();
+        System.out.println("Digte a Razão Social ");
+        nome = tecla.nextLine();
+        System.out.println("Digte o Nome Fantasia: ");
+        sobrenome = tecla.nextLine();
+        System.out.println("Digte o domicilio no formato CIDADE, PAIS: (ex Orlando, USA)");
+        domicilio = tecla.nextLine();
+        System.out.println("Digte o CNPJ : ");
+        registro = tecla.nextLine();
+        pessoaJuridica = (PessoaJuridica) pessoaJuridicaController.criarPessoa(nome, sobrenome, domicilio, registro);
+        pessoaJuridicaController.salvarPessoa(pessoaJuridica);
+
+    }
+
+    private void cadastroFornecedorPessoaFisica() {
+        String nome, sobrenome, domicilio, registro;
+        PessoaFisica pessoaFisica;
+        menu.menuIncluirDespesa();
+        System.out.println("Digte o primeiro nome: ");
+        nome = tecla.nextLine();
+        System.out.println("Digte o sobrenome: ");
+        sobrenome = tecla.nextLine();
+        System.out.println("Digte o domicilio no formato CIDADE, PAIS: (ex Orlando, USA)");
+        domicilio = tecla.nextLine();
+        System.out.println("Digte seu CPF: ");
+        registro = tecla.nextLine();
+        pessoaFisica = (PessoaFisica) pessoaFisicaController.criarPessoa(nome, sobrenome, domicilio, registro);
+        pessoaFisicaController.salvarPessoa(pessoaFisica);
+    }
+
+    private void opcoesMenuFornecedoresExluir() {
+
+        rodarMenuTipoFornecedor();
+        receberOpcao();
+        switch (opcao){
+            case 1:
+                pessoaFisicaController.excluirPessoa();
+                break;
+            case 2:
+                pessoaJuridicaController.excluirPessoa();
+                break;
+            default:
+                opcaoInvalida();
+                rodarMenuOpcoesFornecedores();
+                break;
+        }
+        rodarMenuOpcoesFornecedores();
+
+    }
+
+    private void rodarMenuTipoFornecedor() {
+
+        menu.tipoFornecedor();
+
+    }
+
+    private void opcaoInvalida() {
+        System.out.println(Tools.textoFormatadoYellow("Opção invalida"));
+        System.out.println(Tools.textoFormatadoWhite("Cancelando operação, nenhuma modificação realizada."));
+    }
+
+    private boolean confirmaOperacao() {
+        System.out.println("CONFIRMA ? (1) Sim / (2) Não");
+        receberOpcao();
+        switch (opcao){
+            case 1:
+                return true;
+            case 2:
+                return false;
+            default:
+                opcaoInvalida();
+
+                rodarMenuOpcoesTela02();
+                return false;
+        }
+    }
+
+    private void listarFornecedoresAll() {
+        System.out.println(Tools.textoFormatadoBlue(">>> FORNECEDORES <<<"));
+        System.out.println();
+        System.out.println(Tools.textoFormatadoYellow(">>> Pessoa Fisica: " ));
+        pessoaFisicaController.listarPessoasAll();
+        System.out.println(" ");
+        System.out.println(Tools.textoFormatadoYellow(">>> Pessoa Juridica: " ));
+        pessoaJuridicaController.listarPessoasAll();
+        Tools.pause(2);
     }
 
     private void rodarMenuOpcoesDespesas() {
@@ -95,7 +236,7 @@ public class Sistema {
                 break;
             case 3:
                 opcoesMenuDespesasExcluir();
-                opcoesMenuDespesas();
+                rodarMenuOpcoesDespesas();
                 break;
             case 4:
                 financeiroController.imprimirListaFinanceiroAll();

@@ -37,10 +37,10 @@ public class PessoaJuridicaController implements IPessoa {
         int index;
         PessoaJuridica valorAntigo;
         System.out.println("");
-        System.out.println("Qual deseja excluir ? - informe o numero do index");
         listarPessoasAll();
+        System.out.println("Qual deseja excluir ? - informe o numero do index");
         index = Integer.parseInt(tc.nextLine());
-        if(index < 0){
+        if(index > 0){
             valorAntigo = removerPessoa(index);
             if(validarIndex(valorAntigo)){
                 System.out.println(" ");
@@ -79,7 +79,9 @@ public class PessoaJuridicaController implements IPessoa {
         if(!pessoaJuridicaService.retornarListaAll().isEmpty()){
             System.out.println(" ");
             System.out.println("-----------------");
+            int i = 0;
             for (PessoaJuridica pessoa:pessoaJuridicaService.retornarListaAll()) {
+                System.out.print(i++ + " ");
                 imprimirFormatado(pessoa);
                 Tools.pause(1);
             }

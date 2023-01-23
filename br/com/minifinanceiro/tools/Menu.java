@@ -11,8 +11,8 @@ public class Menu {
 
     public void head(){
         System.out.println("*********************************************");
-        System.out.println("**           MiniFinanceiro - Java         **");
-        System.out.println("************************************ 0.13v **");
+        System.out.println("**           "+ Tools.textoFormatadoBlue("MiniFinanceiro - Java") + "         **");
+        System.out.println("************************************ "+ Tools.textoFormatadoYellow("0.13v") +" **");
         System.out.println(" ");
     }
     public void menuInicial(){
@@ -77,8 +77,18 @@ public class Menu {
         imprimindoMSG();
     }
 
+    public void tipoFornecedor(){
+        System.out.println("*********************************************");
+        System.out.println("---------------------------------------------");
+        System.out.println("|           1 - Pessoa Fisica               |");
+        System.out.println("|           2 - Pessoa Juridica             |");
+        System.out.println("---------------------------------------------");
+        System.out.println(" ");
+        System.out.print("Digite o numero da opção correspondente: ");
+    }
+
     private void imprimindoMSG() {
-        System.out.println("       ... Imprimindo ...");
+        System.out.println(Tools.textoFormatadoYellow("       ... Imprimindo ..."));
         System.out.println();
     }
 

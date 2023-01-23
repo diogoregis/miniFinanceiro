@@ -35,10 +35,10 @@
             int index;
             PessoaFisica valorAntigo;
             System.out.println(" ");
-            System.out.println("Qual financeiro deseja excluir ? - informe o numero do index");
             listarPessoasAll();
+            System.out.println("Qual financeiro deseja excluir ? - informe o numero do index");
             index = Integer.parseInt(tc.nextLine());
-            if(index < 0){
+            if(index > 0){
                 valorAntigo = removerPessoa(index);
                 if(validarIndex(valorAntigo)){
                     System.out.println(" ");
