@@ -17,7 +17,6 @@ public class PessoaFisicaDao {
     public boolean addPessoaFisica(PessoaFisica pessoaFisica){
         return pessoasFisicas.add(pessoaFisica);
     }
-
     public PessoaFisica removePessoaFisica(int index){
         return pessoasFisicas.remove(index);
     }

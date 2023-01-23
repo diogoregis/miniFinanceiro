@@ -31,9 +31,9 @@ public class FinanceiroController {
         }
     }
 
-    public  Financeiro criarFinanceiro(String descricao, PessoaJuridica empresa, Pessoa fornecedor, double valorTotal){
-        Financeiro financeiro = new Financeiro(descricao, empresa, fornecedor, valorTotal);
-        return financeiro;
+    public  Financeiro criarFinanceiro(String descricao, Pessoa fornecedor, double valorTotal){
+        return new Financeiro(descricao, fornecedor, valorTotal);
+
     }
 
     private double restaPagar(double valorTotal, double valorPago){
@@ -48,14 +48,16 @@ public class FinanceiroController {
         }
     }
 
-    private void imprimirListaFinanceiroAll(){
+    public void imprimirListaFinanceiroAll(){
         if(listaFinanceiro().isEmpty()){
             System.out.println(" ");
             System.out.println("Ainda NÃO existem financeiros cadastrados.");
         } else {
             System.out.println(" ");
             System.out.println("-----------------");
+            int i = 0;
             for (Financeiro despesas:listaFinanceiro()) {
+                System.out.print(i++ + " ");
                 imprimirFormatado(despesas);
                 Tools.pause(1);
             }
@@ -67,7 +69,7 @@ public class FinanceiroController {
         return financeiroService.listaFinanceirosAll();
     }
 
-    private Financeiro removerFinanceiro(int index){
+    public Financeiro removerFinanceiro(int index){
         return financeiroService.removerFinanceiro(index);
     }
 
@@ -134,9 +136,12 @@ public class FinanceiroController {
 
     private void imprimirFormatado(Financeiro financeiro){
 
-        System.out.println(">>> " + financeiro.getDescricaoDespesa() + " | " + "Fornecedor: "+ financeiro.getFornecedor() +
-                            " | " + Tools.precoFormata(financeiro.getValorTotal()) + " | " + "( " + financeiro.getEmpresa() + " )");
+        System.out.println(">>> " + financeiro.getDescricaoDespesa() + " | " + "Fornecedor: "+ financeiro.getFornecedor().getNome() + " " +
+                            " | " + Tools.precoFormata(financeiro.getValorTotal()) + " | " + "( " + financeiro.getEmpresa().getNomeFantasia() + " )");
         System.out.println("-----------------");
     }
 
+    public void salvarForceValidado(Financeiro financeiro) {
+        financeiroService.addFinanceiro(financeiro);
+    }
 }

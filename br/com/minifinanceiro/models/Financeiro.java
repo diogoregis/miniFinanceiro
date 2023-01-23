@@ -14,10 +14,10 @@ public class Financeiro {
     private boolean liquidado;
     private EmpresaProprio empresaProprio;
 
-    public Financeiro(String descricaoDespesa, PessoaJuridica empresa, Pessoa fornecedor, double valorTotal) {
+    public Financeiro(String descricaoDespesa, Pessoa fornecedor, double valorTotal) {
         this.id = proximoNum();
         this.descricaoDespesa = descricaoDespesa;
-        this.empresa = empresa;
+        this.empresa = EmpresaProprio.getInstance();
         this.fornecedor = fornecedor;
         this.valorTotal = valorTotal;
 

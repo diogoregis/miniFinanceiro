@@ -35,7 +35,6 @@ public class Tools {
         System.out.println(" ");
         System.out.println("Pressione enter para continuar .......");
         tc.nextLine();
-        System.out.println(" ");
     }
 
 
