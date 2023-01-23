@@ -91,10 +91,11 @@ public class Sistema {
                 rodarMenuOpcoesDespesas();
                 break;
             case 2:
-                //rodarMenuOpcoesFornecedores();
+                opcoesMenuDespesasLiquidar();
                 break;
             case 3:
-                inicialSemHead();
+                opcoesMenuDespesasExcluir();
+                opcoesMenuDespesas();
                 break;
             case 4:
                 financeiroController.imprimirListaFinanceiroAll();
@@ -111,6 +112,37 @@ public class Sistema {
         }
     }
 
+    private void opcoesMenuDespesasLiquidar() {
+        financeiroController.imprimirListaFinanceiroAll();
+        receberIndex();
+        System.out.println("CONFIRMA ? (1) Sim / (2) Não");
+        receberOpcao();
+        switch (opcao){
+            case 1:
+                financeiroController.liquidarPagamento(index);
+                rodarMenuOpcoesDespesas();
+                break;
+            case 2:
+                System.out.println("OPERAÇÃO NÃO REALIZADA");
+                rodarMenuOpcoesDespesas();
+                break;
+            default:
+                cancelandoOperacao();
+        }
+    }
+
+    private void opcoesMenuDespesasExcluir() {
+        financeiroController.imprimirListaFinanceiroAll();
+        receberIndex();
+        financeiroController.removerFinanceiro(index);
+
+    }
+
+    private void receberIndex() {
+        System.out.println("Informe o numero correspondente");
+        index = Integer.parseInt(tecla.nextLine());
+    }
+
     private void incluirNovaDespesa() {
         menu.menuIncluirDespesa();
         String descricao;
@@ -123,19 +155,16 @@ public class Sistema {
         switch (opcao){
             case 1:
                 pessoaFisicaController.listarPessoasAll();
-                System.out.println("Informe o numero correspondente");
-                index = Integer.parseInt(tecla.nextLine());
+                receberIndex();
                 fornecedor = pessoaFisicaController.retornarPessoaIndex(index);
                 break;
             case 2:
                 pessoaJuridicaController.listarPessoasAll();
-                System.out.println("Informe o numero correspondente");
-                index = Integer.parseInt(tecla.nextLine());
+                receberIndex();
                 fornecedor = pessoaJuridicaController.retornarPessoaIndex(index);
                 break;
             default:
-                System.out.println("... Opção invalida, cancelando operação ...");
-                rodarMenuOpcoesDespesas();
+                cancelandoOperacao();
                 break;
                 
         }
@@ -145,6 +174,11 @@ public class Sistema {
         System.out.println("Informe o valor da despesa a ser paga (utilize . para os centavos): ");
         valorTotal = Double.parseDouble(tecla.nextLine());
         financeiroController.addFinanceiro(financeiroController.criarFinanceiro(descricao,fornecedor,valorTotal));
+    }
+
+    private void cancelandoOperacao() {
+        System.out.println("... Opção invalida, cancelando operação ...");
+        rodarMenuOpcoesTela02();
     }
 
     public void receberOpcao(){

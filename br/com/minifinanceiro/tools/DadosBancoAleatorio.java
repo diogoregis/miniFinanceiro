@@ -67,6 +67,6 @@ public class DadosBancoAleatorio {
     private String cpf[] = {"084.835.963-89", "123.963.741-98", "023.450.563-01", "009.484.400-30" };
     private String cnpj[] = {"23.723.401/0001-75", "77.232.604/0001-98", "30.117.515/0001-37", "09.118.957/0001-01" };
     private String domicilios[] = {"Berlin, GEA", "Boston, USA", "São Paulo, BRA", "Recife, BRA", "Paris, FRA", "Olinda, BRA", "San Francisco, USA"};
-    private String descricoes[] = {"Conta de Energia", "Duplicata Mercantil - Consumo", "Conta de Internet"};
+    private String descricoes[] = {"Conta de Energia", "Duplicata Mercantil", "Conta de Internet"};
 
 }

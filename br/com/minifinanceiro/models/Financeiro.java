@@ -1,5 +1,7 @@
 package br.com.minifinanceiro.models;
 
+import br.com.minifinanceiro.tools.Tools;
+
 import java.util.Date;
 
 public class Financeiro {
@@ -60,7 +62,15 @@ public class Financeiro {
     }
 
     public void setLiquidado(boolean liquidado) {
-        this.liquidado = liquidado;
+        if(this.liquidado){
+            System.out.println("!!! Financeiro já se encontra LIQUIDADO !!!");
+            System.out.println("Nenhuma operação realizada");
+        } else {
+            this.liquidado = liquidado;
+            System.out.println("Sucesso !!!");
+            System.out.println("O valor de " + Tools.precoFormata(this.getValorTotal())  + " liquidado.");
+        }
+
     }
 
 

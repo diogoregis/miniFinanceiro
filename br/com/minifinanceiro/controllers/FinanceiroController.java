@@ -136,12 +136,20 @@ public class FinanceiroController {
 
     private void imprimirFormatado(Financeiro financeiro){
 
-        System.out.println(">>> " + financeiro.getDescricaoDespesa() + " | " + "Fornecedor: "+ financeiro.getFornecedor().getNome() + " " +
+        System.out.print(">>> " + financeiro.getDescricaoDespesa() + " | " + "Fornecedor: "+ financeiro.getFornecedor().getNome() + " " +
                             " | " + Tools.precoFormata(financeiro.getValorTotal()) + " | " + "( " + financeiro.getEmpresa().getNomeFantasia() + " )");
+        System.out.print(Tools.liquidaFormata(financeiro.isLiquidado()));
+        System.out.println(" ");
         System.out.println("-----------------");
     }
 
     public void salvarForceValidado(Financeiro financeiro) {
         financeiroService.addFinanceiro(financeiro);
     }
+
+    public void liquidarPagamento(int index) {
+        financeiroService.retornarFinanceiroIndex(index).setLiquidado(true);
+        System.out.println("");
+    }
+
 }

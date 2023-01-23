@@ -10,6 +10,11 @@ import java.util.concurrent.TimeUnit;
 public class Tools {
 
 
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_RESET = "\u001B[0m";
+
     static Scanner tc = new Scanner(System.in);
     static NumberFormat nf = new DecimalFormat("R$ #,##0.00", new DecimalFormatSymbols(new Locale("pt", "BR")));
 
@@ -23,6 +28,14 @@ public class Tools {
 
     public static String precoFormata(double preco){
         return Tools.nf.format(preco);
+    }
+
+    public static String liquidaFormata(boolean liquida){
+        if (liquida){
+            return ANSI_GREEN + " [ LIQUIDADO ] " + ANSI_RESET;
+        } else {
+            return ANSI_RED + " [ A PAGAR ] " + ANSI_RESET;
+        }
     }
 
     public static void teclaEncerrar(){
