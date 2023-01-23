@@ -1,4 +1,4 @@
 # miniFinanceiro
 # miniFinanceiro
 
-* Tenho que mehlor esse README, eu sei, tá feinho.
+* Tenho que melhorar esse README, eu sei, tá feinho.
